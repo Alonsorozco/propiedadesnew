@@ -10,6 +10,12 @@
   </head>
 
   <body>
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+
+       <%= link_to 'Registrate',new_user_registration_path, class:"nav-link text-dark" %>
+       <%= link_to 'Inicia Sesion',user_session_path, class:"nav-link text-dark" %>
+       <%= link_to 'Salir', destroy_user_session_path, method: :delete, class:"nav-link text-white" %>
     <%= yield %>
   </body>
 </html>
