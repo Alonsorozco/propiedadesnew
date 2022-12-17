@@ -23,10 +23,11 @@ class PropertiesController < ApplicationController
   # POST /properties or /properties.json
   def create
     @property = Property.new(property_params)
+    @property.user_id = current_user
 
     respond_to do |format|
       if @property.save
-        format.html { redirect_to property_url(@property), notice: "Property was successfully created." }
+        format.html { redirect_to property_url(@current_user.id), notice: "Property was successfully created." }
         format.json { render :show, status: :created, location: @property }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -66,6 +67,6 @@ class PropertiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def property_params
-      params.require(:property).permit(:price, :direction, :area, :room, :toilets, :img)
+      params.require(:property).permit(:price, :direction, :area, :room, :toilets, :img, :user_id)
     end
 end
